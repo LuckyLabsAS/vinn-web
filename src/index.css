@@ -1,8 +1,9 @@
 :root {
     color-scheme: dark;
-    background-color: #090c0b;
-    --safe-top: env(safe-area-inset-top, 0px);
+    background-color: #14201d;
+    --safe-top: 0px;
     --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --overscroll-bg: #14201d;
 }
 
 * {
@@ -17,16 +18,14 @@ body {
 }
 
 html {
-    background-color: #090c0b;
-    background: radial-gradient(circle at 20% 20%, #26322f 0%, #121816 55%, #090c0b 100%);
+    background-color: var(--overscroll-bg);
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
 }
 
 body {
     font-family: "Space Grotesk", sans-serif;
-    background-color: #090c0b;
-    background: radial-gradient(circle at 20% 20%, #26322f 0%, #121816 55%, #090c0b 100%);
+    background-color: var(--overscroll-bg);
     color: #f0f5f2;
 }
 
@@ -36,21 +35,39 @@ body {
 
 .page {
     min-height: 100%;
+    background: linear-gradient(180deg, #14201d 0%, #0b100f 45%, #050706 100%);
+    position: relative;
+}
+
+.page::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 22px;
+    background: linear-gradient(to top, #050706 0%, rgba(5, 7, 6, 0) 100%);
+    pointer-events: none;
+    z-index: 1;
 }
 
 .panel {
-    min-height: calc(100svh - var(--safe-top) - var(--safe-bottom));
+    min-height: calc(100svh - var(--safe-bottom));
     display: grid;
     place-items: center;
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    padding: calc(2rem + var(--safe-top)) 2rem calc(2rem + var(--safe-bottom));
+    padding: 2rem 2rem calc(2rem + var(--safe-bottom));
+    position: relative;
+    overflow: hidden;
 }
 
 .content {
     width: min(760px, 100%);
     text-align: center;
     animation: fade-in 650ms ease-out both;
+    position: relative;
+    z-index: 1;
 }
 
 .eyebrow {
@@ -112,11 +129,11 @@ p {
 }
 
 .teaser {
-    background: linear-gradient(180deg, rgba(9, 12, 11, 0.2), rgba(9, 12, 11, 0.55));
+    background: transparent;
 }
 
 .footer-panel {
-    background: linear-gradient(180deg, rgba(9, 12, 11, 0.55), rgba(9, 12, 11, 0.85));
+    background: transparent;
 }
 
 .footer-content small {
@@ -140,6 +157,6 @@ p {
 
 @media (max-width: 720px) {
     .panel {
-        padding: calc(1.2rem + var(--safe-top)) 1.2rem calc(1.2rem + var(--safe-bottom));
+        padding: 1.2rem 1.2rem calc(1.2rem + var(--safe-bottom));
     }
 }
