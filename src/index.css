@@ -1,3 +1,8 @@
+:root {
+    color-scheme: dark;
+    background-color: #090c0b;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -10,25 +15,25 @@ body {
 }
 
 html {
+    background-color: #090c0b;
     background: radial-gradient(circle at 20% 20%, #26322f 0%, #121816 55%, #090c0b 100%);
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: "Space Grotesk", sans-serif;
+    background-color: #090c0b;
     background: radial-gradient(circle at 20% 20%, #26322f 0%, #121816 55%, #090c0b 100%);
     color: #f0f5f2;
 }
 
 #root {
-    height: 100%;
     min-height: 100dvh;
 }
 
 .page {
-    height: 100dvh;
-    overflow-y: auto;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
+    min-height: 100dvh;
 }
 
 .panel {
