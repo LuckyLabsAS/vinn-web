@@ -1,6 +1,8 @@
 :root {
     color-scheme: dark;
     background-color: #090c0b;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 * {
@@ -29,20 +31,20 @@ body {
 }
 
 #root {
-    min-height: 100svh;
+    min-height: 100%;
 }
 
 .page {
-    min-height: 100svh;
+    min-height: 100%;
 }
 
 .panel {
-    min-height: 100svh;
+    min-height: calc(100svh - var(--safe-top) - var(--safe-bottom));
     display: grid;
     place-items: center;
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    padding: 2rem;
+    padding: calc(2rem + var(--safe-top)) 2rem calc(2rem + var(--safe-bottom));
 }
 
 .content {
@@ -138,6 +140,6 @@ p {
 
 @media (max-width: 720px) {
     .panel {
-        padding: 1.2rem;
+        padding: calc(1.2rem + var(--safe-top)) 1.2rem calc(1.2rem + var(--safe-bottom));
     }
 }
